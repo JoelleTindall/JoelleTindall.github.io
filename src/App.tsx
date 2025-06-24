@@ -39,6 +39,23 @@ export default function App() {
         />
 
         <Route path="/notfound" element={<NotFound />} />
+        
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <section id="about">
+                <AboutPage />
+              </section>
+              <section id="projects">
+                <ProjectsPage />
+              </section>
+              <section id="contact">
+                <ContactPage />
+              </section>
+            </Layout>
+          }
+        />
       </Routes>
     </HashRouter>
   );
