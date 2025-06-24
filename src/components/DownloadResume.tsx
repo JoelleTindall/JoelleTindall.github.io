@@ -1,39 +1,15 @@
-import axios from "axios";
+import resume from '../assets/files/Resume.pdf'
 
 interface Props {
   caption?: string;
 }
 
 const DownloadButton: React.FC<Props> = ({caption}) => {
-  const downloadFile = async () => {
-    try {
-      const response = await axios.get("/api/downresume", {
-        responseType: "blob",
-      });
 
-      const fileBlob = new Blob([response.data], { type: "application/pdf" });
-      const url = window.URL.createObjectURL(fileBlob);
-
-      // Create a temporary <a> element to trigger the download
-      const tempLink = document.createElement("a");
-      tempLink.href = url;
-      tempLink.setAttribute("download", `Resume_Joelle_Tindall.pdf`); // Set the desired filename for the downloaded file
-
-      // Append the <a> element to the body and click it to trigger the download
-      document.body.appendChild(tempLink);
-      tempLink.click();
-
-      // Clean up the temporary elements and URL
-      document.body.removeChild(tempLink);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("Error download.. ", error);
-    }
-  };
 
   return (
     <>
-      <a onClick={downloadFile}>
+      <a href={resume} download>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"

@@ -20,7 +20,7 @@ interface Project {
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+
 
   useEffect(() => {
     const manualProjects: Project[] = [
@@ -34,46 +34,45 @@ export default function ProjectsPage() {
       },
       {
         id: "2",
-        title: "Task Tracker",
-        description: "A task tracking app with authentication and drag-and-drop.",
-        url: "https://example.com/tasks",
-        imagename: rpsb,
-        category: "productivity",
+        title: "Monster Elevator",
+        description: "Another silly little game for the Playdate. Make sandwiches for semi-randomized monsters!",
+        url: "https://play.date/games/monster-elevator/",
+        imagename: monsterelevator,
+        category: "playdate",
       },
       {
         id: "3",
-        title: "Weather App",
-        description: "Weather forecast app using a public API.",
-        url: "https://example.com/weather",
-        imagename: monsterelevator,
-        category: "utility",
+        title: "RPSB",
+        description: "'My 3rd silly little game for the Playdate. Mix and mash together rocks, papers, and scissors to create explosions.",
+        url: "https://play.date/games/rock-paper-scissors-boom/",
+        imagename: rpsb,
+        category: "playdate",
       },
       {
         id: "4",
-        title: "Blog Platform",
-        description: "A CMS-style blog site with markdown support.",
-        url: "https://example.com/blog",
+        title: "Full-Stack Personal site",
+        description: "Full-stack version of this site, made with React, NGINX, Nodejs, Postgres and Docker.",
+        url: "https://github.com/JoelleTindall/Personal-Site-React.ts-Node.js",
         imagename: sitegif,
-        category: "content",
+        category: "other",
       },
       {
         id: "5",
-        title: "Image Gallery",
-        description: "Image browsing gallery with upload and filter features.",
-        url: "https://example.com/gallery",
+        title: "PHP Storefront",
+        description: "A very bare bones storefront application built with PHP, JavaScript, and MySQL",
+        url: "https://github.com/JoelleTindall/Simple-PHP-MySQL-JS-Web-App",
         imagename: catapp,
-        category: "media",
+        category: "other",
       },
       {
         id: "6",
         title: "Chat App",
-        description: "Real-time chat application using WebSockets.",
-        url: "https://example.com/chat",
+        description: "'A simple chat application built with React, .NET Core, and Postgres",
+        url: "https://github.com/JoelleTindall/.NET-Core-React-Postgres-ChatApp",
         imagename: chatapp,
-        category: "communication",
+        category: "other",
       },
     ];
-    setError(false);
     setProjects(manualProjects);
     setLoading(false);
   }, []);
@@ -90,7 +89,7 @@ export default function ProjectsPage() {
         <div className="corner-border">
           <div className="project-list">
             {loading && <p>loadin...</p>}
-            {!error ? (
+            {!loading ? (
               projects.map((project) => (
                 <div className={`project ${project.category}`} key={project.id}>
                   <a href={project.url}>
@@ -110,8 +109,8 @@ export default function ProjectsPage() {
               <div className="project">
                 <a href="/">
                   <div className="project-info">
-                    <h3>Nothing</h3>
-                    <p>Something went wrong, cause there's nothing here!</p>
+                    <h3>Loading!</h3>
+                    <p>Hold your horses, please.</p>
                   </div>
                 </a>
               </div>

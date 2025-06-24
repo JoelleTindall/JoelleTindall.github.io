@@ -63,10 +63,11 @@ const ContactPage: React.FC = () => {
               <form
                 className="contactform"
                 ref={formRef}
-                onSubmit={handleSubmit}
+                
+                action="https://fabform.io/f/n1M2n_6" method="post"
               >
                 <div className="label">
-                  <label>Name</label>
+                  <label htmlFor="name">Name</label>
                 </div>
                 <div className="emailholder">
                   <input
@@ -82,7 +83,7 @@ const ContactPage: React.FC = () => {
                   ></input>
                 </div>
                 <div className="label">
-                  <label>Email</label>
+                  <label htmlFor="email">Email</label>
                 </div>
                 <div className="emailholder">
                   <input
@@ -98,7 +99,7 @@ const ContactPage: React.FC = () => {
                   ></input>
                 </div>
                 <div className="label">
-                  <label>Message</label>
+                  <label htmlFor="message">Message</label>
                 </div>
                 <div className="messageholder">
                   <textarea
