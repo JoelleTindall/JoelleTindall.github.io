@@ -533,7 +533,8 @@ form {
 
 @media (max-width: 375px) {
   .project-list .project a .project-image img {
-    max-height: 100%;
+      max-width: 100%;
+  height: auto;
   }
 }
 
