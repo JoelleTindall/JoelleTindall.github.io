@@ -1,107 +1,65 @@
 import React, { useEffect, useState } from "react";
 import "./hamburger.css";
 import { useNavigate } from "react-router-dom";
+
 interface Props {
-  children: React.ReactNode;
+  isOpen: boolean;
+  onToggle: () => void;
 }
 
-const Hamburger: React.FC<Props> = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [height, setHeight] = useState(0);
+const Hamburger: React.FC<Props> = ({ isOpen, onToggle }) => {
+  const [navHeight, setNavHeight] = useState(0);
   const navigate = useNavigate();
-
-  const handleResize = () => {
-    alignMenu();
-  };
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
   const alignMenu = () => {
     const navBar = document.getElementById("stickynav");
     if (navBar) {
-      setHeight(navBar.clientHeight);
+      setNavHeight(navBar.clientHeight);
     }
+  };
+
+  const scrollToOrNavigate = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate(`/#${id}`);
+    }
+    onToggle(); // close menu after click
   };
 
   useEffect(() => {
     alignMenu();
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener("resize", alignMenu);
+    return () => window.removeEventListener("resize", alignMenu);
   }, []);
 
   return (
     <div className="hamburger-menu">
-      <button className="hamburger-icon" onClick={toggleMenu}>
+      <button className="hamburger-icon" onClick={onToggle}>
         <div className={`bar ${isOpen ? "open" : ""}`} />
         <div className={`bar ${isOpen ? "open" : ""}`} />
         <div className={`bar ${isOpen ? "open" : ""}`} />
       </button>
+
       <div
         className={`dropdown ${isOpen ? "open" : ""}`}
-        style={
-          isOpen
-            ? { marginTop: `${height}px`, height: `calc(100vh - ${height}px)` }
-            : { marginTop: `${height}px` }
-        }
+        style={{
+          marginTop: `${navHeight}px`,
+          ...(isOpen && { height: `calc(100vh - ${navHeight}px)` }),
+        }}
       >
-        <div
-          className="link color1"
-              onClick={() => {
-                const element = document.getElementById("about");
-
-                if (element) {
-                  element?.scrollIntoView({
-                    behavior: "smooth",
-                  });
-                } else {
-                  navigate("/#about");
-                }
-                toggleMenu();
-              }}
-        >
+        <div className="link color1" onClick={() => scrollToOrNavigate("about")}>
           <a>About</a>
         </div>
-        <div
-          className="link color2"
-              onClick={() => {
-                const element = document.getElementById("projects");
-
-                if (element) {
-                  element?.scrollIntoView({
-                    behavior: "smooth",
-                  });
-                } else {
-                  navigate("/#projects");
-                }
-                toggleMenu();
-              }}
-        >
+        <div className="link color2" onClick={() => scrollToOrNavigate("projects")}>
           <a>Projects</a>
         </div>
-        <div
-          className="link color3"
-              onClick={() => {
-                const element = document.getElementById("contact");
-
-                if (element) {
-                  element?.scrollIntoView({
-                    behavior: "smooth",
-                  });
-                } else {
-                  navigate("/#contact");
-                }
-                toggleMenu();
-              }}
-        >
+        <div className="link color3" onClick={() => scrollToOrNavigate("contact")}>
           <a>Contact</a>
         </div>
-        <div className="link color4" onClick={()=>{
-          toggleMenu();
+        <div className="link color4" onClick={() => {
+          onToggle();
           navigate("/otherstuff");
         }}>
           <a>Other Stuff</a>

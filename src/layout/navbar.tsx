@@ -15,22 +15,23 @@ const NavBar = () => {
     setHamburgerOpen(!hamburgerOpen);
   };
 
-  const handleNavScroll = (id: string) => {
-    if (location.hash === "#/") {
+const handleNavScroll = (id: string) => {
+  setHamburgerOpen(false); // Close the menu
+  if (location.hash === "#/") {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  } else {
+    navigate("/#/");
+    setTimeout(() => {
       const el = document.getElementById(id);
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });
       }
-    } else {
-      navigate("/#/");
-      setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    }
-  };
+    }, 100);
+  }
+};
 
   return (
     <>
@@ -116,9 +117,9 @@ const NavBar = () => {
           </div>
         </nav>
 
-        <div className="hamburger" onClick={toggleHamburger}>
-          <Hamburger children={hamburgerOpen} />
-        </div>
+<div className="hamburger">
+  <Hamburger isOpen={hamburgerOpen} onToggle={toggleHamburger} />
+</div>
       </div>
     </>
   );
