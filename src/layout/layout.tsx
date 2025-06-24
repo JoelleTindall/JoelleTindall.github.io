@@ -11,53 +11,69 @@ interface Props {
 const Layout: React.FC<Props> = ({ children }) => {
   const location = useLocation();
 
-  useEffect(() => {
-    const nav = document.getElementById("stickynav");
-    const navHeight = nav?.clientHeight || 0;
+ useEffect(() => {
+  const nav = document.getElementById("stickynav");
+  const navHeight = nav?.clientHeight || 0;
 
-    const sections = document.querySelectorAll<HTMLElement>("section[id]");
+  const sections = document.querySelectorAll<HTMLElement>("section[id]");
+  sections.forEach((section) => {
+    section.style.scrollMarginTop = `${navHeight - 1}px`;
+  });
 
-    // Apply scroll margin to prevent overlap
-    sections.forEach((section) => {
-      section.style.scrollMarginTop = `${navHeight - 1}px`;
+  const raw = location.hash;
+  const id = raw.startsWith("#/") ? raw.slice(2) : raw.slice(1);
+
+  if (!id) return;
+
+  const tryScrollToHash = () => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      return true;
+    }
+    return false;
+  };
+
+  if (!tryScrollToHash()) {
+    // Wait for the element to be rendered
+    const observer = new MutationObserver(() => {
+      if (tryScrollToHash()) {
+        observer.disconnect();
+      }
     });
 
-    const scrollToHash = () => {
-      // Strip '#/' from hash (e.g. "#/about" → "about")
-      const raw = location.hash;
-      const id = raw.startsWith("#/") ? raw.slice(2) : raw.slice(1);
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    };
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
 
-    const timeoutId = setTimeout(scrollToHash, 100);
+    // Fallback: kill after 5 seconds just in case
+    setTimeout(() => observer.disconnect(), 5000);
+  }
 
-    // Optional: update hash as user scrolls into sections
-    const handleScroll = () => {
-      const scrollPosition = window.pageYOffset;
+  // Scroll listener (optional hash updating)
+  const handleScroll = () => {
+    const scrollPosition = window.pageYOffset;
 
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - navHeight;
-        const sectionBottom = sectionTop + section.offsetHeight;
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - navHeight;
+      const sectionBottom = sectionTop + section.offsetHeight;
 
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          const currentHash = `#/${section.id}`;
-          if (location.hash !== currentHash) {
-            window.history.replaceState(null, "", currentHash);
-          }
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        const currentHash = `#/${section.id}`;
+        if (location.hash !== currentHash) {
+          window.history.replaceState(null, "", currentHash);
         }
-      });
-    };
+      }
+    });
+  };
 
-    window.addEventListener("scroll", handleScroll);
+  window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [location]);
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, [location]);
 
   return (
     <>
