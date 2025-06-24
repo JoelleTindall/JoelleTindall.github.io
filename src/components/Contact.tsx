@@ -5,7 +5,6 @@ const ContactPage: React.FC = () => {
 
   const myRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
-  const [height, setHeight] = useState(0);
     const [status, setStatus] = useState<
     'initial' | 'sending' | 'success' | 'fail'
   >('initial');
@@ -15,35 +14,7 @@ const ContactPage: React.FC = () => {
     message: "",
   });
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const formValues = Object.fromEntries(formData);
-
-    try {
-      setHeight(formRef.current!.clientHeight);
-      setStatus('sending');
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formValues),
-      });
-      if (response.ok) {
-        setStatus('success');
-      
-      } else {
-        setStatus('fail');
-        console.error("Form submission failed.");
-      }
-    } catch (error) {
-       setStatus('fail');
-      console.error("Error submitting form:", error);
-    }
-    
-  };
 
   return (
     <div id="contact" className="section" ref={myRef}>
@@ -129,7 +100,7 @@ const ContactPage: React.FC = () => {
                 </div>
               </form>
             ) : (
-              <div className="form-success" style={{ height: `${height}px` }}>
+              <div className="form-success">
                 
                   <Result status={status} setStatus={setStatus}/>
                 
