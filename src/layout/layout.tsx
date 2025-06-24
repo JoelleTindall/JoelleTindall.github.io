@@ -1,48 +1,40 @@
-import React, { type ReactNode } from "react";
+import React, { type ReactNode, useEffect } from "react";
 import NavBar from "./navbar";
 import Footer from "./footer";
-import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-
 import "./layout.css";
 
 interface Props {
   children: ReactNode;
 }
+
 const Layout: React.FC<Props> = ({ children }) => {
-  const navigate = useNavigate();
   const location = useLocation();
+
   useEffect(() => {
     const nav = document.getElementById("stickynav");
     const navHeight = nav?.clientHeight || 0;
 
     const sections = document.querySelectorAll<HTMLElement>("section[id]");
 
-    // set scrollMarginTop -1 so no overlap..
+    // Apply scroll margin to prevent overlap
     sections.forEach((section) => {
       section.style.scrollMarginTop = `${navHeight - 1}px`;
     });
 
-    // scroll to hash target if present
     const scrollToHash = () => {
-      if (location.hash) {
-        const id = location.hash.replace("#", "");
-        const el = document.getElementById(id);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        } else {
-          navigate("/NotFound");
-        }
+      // Strip '#/' from hash (e.g. "#/about" → "about")
+      const raw = location.hash;
+      const id = raw.startsWith("#/") ? raw.slice(2) : raw.slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
       }
     };
 
-    // timeout allowing child components to render
-    const timeoutId = setTimeout(() => {
-      scrollToHash();
-    }, 100);
+    const timeoutId = setTimeout(scrollToHash, 100);
 
-    // scroll listener to update URL based on position
+    // Optional: update hash as user scrolls into sections
     const handleScroll = () => {
       const scrollPosition = window.pageYOffset;
 
@@ -51,20 +43,21 @@ const Layout: React.FC<Props> = ({ children }) => {
         const sectionBottom = sectionTop + section.offsetHeight;
 
         if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          // update the URL hash without scrolling
-          window.history.replaceState(null, "", `#${section.id}`);
+          const currentHash = `#/${section.id}`;
+          if (location.hash !== currentHash) {
+            window.history.replaceState(null, "", currentHash);
+          }
         }
       });
     };
 
     window.addEventListener("scroll", handleScroll);
 
-    // cleanup
     return () => {
       clearTimeout(timeoutId);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [location, navigate]);
+  }, [location]);
 
   return (
     <>

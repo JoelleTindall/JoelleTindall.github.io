@@ -38,7 +38,7 @@ export default function App() {
           }
         />
 
-        <Route path="*" element={<NotFound />} />
+        <Route path="/notfound" element={<NotFound />} />
       </Routes>
     </HashRouter>
   );
