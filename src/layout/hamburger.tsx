@@ -18,6 +18,20 @@ const Hamburger: React.FC<Props> = ({ isOpen, onToggle }) => {
     }
   };
 
+    // recalculate height on mount and resize
+  useEffect(() => {
+    alignMenu();
+    window.addEventListener("resize", alignMenu);
+    return () => window.removeEventListener("resize", alignMenu);
+  }, []);
+
+  // recalculate height immediately when menu opens
+  useEffect(() => {
+    if (isOpen) {
+      alignMenu();
+    }
+  }, [isOpen]);
+
   const scrollToOrNavigate = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
