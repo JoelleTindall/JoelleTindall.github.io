@@ -20,7 +20,7 @@ interface Project {
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const manualProjects: Project[] = [
@@ -37,7 +37,7 @@ export default function ProjectsPage() {
         title: "Task Tracker",
         description: "A task tracking app with authentication and drag-and-drop.",
         url: "https://example.com/tasks",
-        imagename: "tasks.png",
+        imagename: rpsb,
         category: "productivity",
       },
       {
@@ -45,7 +45,7 @@ export default function ProjectsPage() {
         title: "Weather App",
         description: "Weather forecast app using a public API.",
         url: "https://example.com/weather",
-        imagename: "weather.png",
+        imagename: monsterelevator,
         category: "utility",
       },
       {
@@ -53,7 +53,7 @@ export default function ProjectsPage() {
         title: "Blog Platform",
         description: "A CMS-style blog site with markdown support.",
         url: "https://example.com/blog",
-        imagename: "blog.png",
+        imagename: sitegif,
         category: "content",
       },
       {
@@ -61,7 +61,7 @@ export default function ProjectsPage() {
         title: "Image Gallery",
         description: "Image browsing gallery with upload and filter features.",
         url: "https://example.com/gallery",
-        imagename: "gallery.png",
+        imagename: catapp,
         category: "media",
       },
       {
@@ -69,11 +69,11 @@ export default function ProjectsPage() {
         title: "Chat App",
         description: "Real-time chat application using WebSockets.",
         url: "https://example.com/chat",
-        imagename: "chat.png",
+        imagename: chatapp,
         category: "communication",
       },
     ];
-
+    setError(false);
     setProjects(manualProjects);
     setLoading(false);
   }, []);
