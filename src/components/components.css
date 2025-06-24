@@ -531,10 +531,11 @@ form {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 376px) {
   .project-list .project a .project-image img {
       max-width: 100%;
   height: auto;
+
   }
 }
 
