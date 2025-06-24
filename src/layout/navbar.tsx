@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import logo from "../assets/images/logo.png";
 import Hamburger from "./hamburger";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DownloadButton from "../components/DownloadResume";
 
 const NavBar = () => {
@@ -71,9 +71,9 @@ const NavBar = () => {
             >
               Contact
             </a>
-            <a className="color4" href="/otherstuff">
-              Other Stuff
-            </a>
+   <Link className="color4" to="/otherstuff">Other Stuff</Link>
+              
+           
 
             <a
               className="color5"

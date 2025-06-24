@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import AboutPage from "./components/About.tsx";
 import ProjectsPage from "./components/Projects.tsx";
@@ -10,7 +10,7 @@ import NotFound from "./components/NotFound.tsx";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter basename={"/"}>
       <Routes>
         <Route
           path="/"
@@ -38,10 +38,8 @@ export default function App() {
           }
         />
 
-
-
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
