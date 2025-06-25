@@ -1,8 +1,10 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import workcat from "../assets/images/workcat.gif";
 const OtherPage: React.FC = () => {
   const myRef = useRef<HTMLDivElement>(null);
-
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
   return (
     <div id="otherstuff" className="section" ref={myRef}>
       <div className="header contact">

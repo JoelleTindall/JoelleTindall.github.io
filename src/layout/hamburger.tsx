@@ -60,7 +60,7 @@ const Hamburger: React.FC<Props> = ({ isOpen, onToggle }) => {
         className={`dropdown ${isOpen ? "open" : ""}`}
         style={{
           marginTop: `${navHeight}px`,
-          ...(isOpen && { height: `calc(100vh - ${navHeight}px)` }),
+          ...(isOpen && { height: `calc(100dvh - ${navHeight}px)` }),
         }}
       >
         <div className="link color1" onClick={() => scrollToOrNavigate("about")}>
