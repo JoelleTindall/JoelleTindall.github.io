@@ -384,7 +384,7 @@ form {
   min-width: 45%;
   border: 8px solid #6ae0af;
   border-radius: 20px;
-
+  min-height: fit-content;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   transition: border 500ms, padding 500ms, background-color 100ms,
@@ -495,6 +495,10 @@ form {
 }
 
 @media (max-width: 700px) {
+
+  .project {
+    height:fit-content;
+  }
   .project-list .project a .project-image img {
     min-height: 100%;
   }
@@ -531,50 +535,6 @@ form {
   }
 }
 
-@media (max-width: 376px) {
-  .project-list .project a .project-image img {
-      max-width: 100%;
-  height: auto;
-
-  }
-}
-
-/* 
-@media (max-width: 380px) {
-  .project-list .project a .project-image img {
-    min-height: 100%;
-  }
-
-  h1 {
-    font-size: 10cqw;
-  }
-
-  h1 svg {
-    width: 10cqw;
-  }
-
-  .skills{
-    padding:4px;
-  }
-
-  .skill {
-    margin: 5px;
-    padding: 5px;
-  }
-
-  .contact .formholder {
-    padding: 12px;
-  }
-
-  .textblock p {
-    margin: 8px;
-    font-size: 1rem;
-  }
-
-  .textblock .about-icons {
-    margin: 8px;
-  }
-} */
 
 /* CONTACT --------------------------------------------- */
 .contact {
