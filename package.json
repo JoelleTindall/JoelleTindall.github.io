@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "predeploy": "npm run build",
-    "add-domain": "echo \"www.JoelleTindall.com\" > dist/CNAME",
+    "add-domain": "echo www.JoelleTindall.com > dist/CNAME",
     "deploy": "npm run add-domain && gh-pages -d dist"
   },
   "dependencies": {

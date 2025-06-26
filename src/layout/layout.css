@@ -81,9 +81,9 @@ p,h1,h2,h3{
 }
 
 button {
-    -webkit-appearance: none; /* webkit browsers */
-    -moz-appearance: none; /* firefox browser */
-    appearance: none;
+    -webkit-appearance: none!important; /* webkit browsers */
+    -moz-appearance: none!important; /* firefox browser */
+    appearance: none!important;
     border-radius: 0; 
 }
 
