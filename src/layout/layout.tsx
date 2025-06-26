@@ -1,6 +1,7 @@
 import React, { type ReactNode, useEffect } from "react";
 import NavBar from "./navbar";
 import Footer from "./footer";
+
 import { useLocation } from "react-router-dom";
 import "./layout.css";
 
@@ -62,6 +63,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <NavBar />
+   
       <div className="row">
         <div className="column left sidebar"></div>
         <div className="column middle content">

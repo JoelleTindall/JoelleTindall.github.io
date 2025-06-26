@@ -1,37 +1,60 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import logo from "../assets/images/logo.png";
+import logobw from "../assets/images/logobw.png";
 import Hamburger from "./hamburger";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import DownloadButton from "../components/DownloadResume";
+import DarkMode from "./darkmode";
 
 const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const navRef = useRef(null);
+  const [theme, setTheme] = useState("light");
 
+  useEffect(() => {
+    // Set up MutationObserver to detect external changes to data-theme
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === "attributes" &&
+          mutation.attributeName === "data-theme"
+        ) {
+          const newTheme = document.documentElement.getAttribute("data-theme");
+          if (newTheme && newTheme !== theme) {
+            setTheme(newTheme); // Update React state to reflect external change
+          }
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+
+    return () => observer.disconnect(); // Cleanup observer on component unmount
+  }, [theme]);
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
 
   const toggleHamburger = () => {
     setHamburgerOpen(!hamburgerOpen);
   };
 
-const handleNavScroll = (id: string) => {
-  setHamburgerOpen(false); // Close the menu
-  if (location.hash === "#/") {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  } else {
-    navigate("/#/");
-    setTimeout(() => {
+  const handleNavScroll = (id: string) => {
+    setHamburgerOpen(false); // Close the menu
+    if (location.hash === "#/") {
       const el = document.getElementById(id);
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });
       }
-    }, 100);
-  }
-};
+    } else {
+      navigate("/#/");
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  };
 
   return (
     <>
@@ -39,8 +62,9 @@ const handleNavScroll = (id: string) => {
         <nav id="stickynav" ref={navRef}>
           <div className="brand">
             <a href="/#">
-              <img src={logo} alt="Logo" />
+              <img src={theme == "light" ? logo : logobw} alt="Logo" />
             </a>
+          <DarkMode/>
           </div>
           <div className="links">
             <a className="color1" onClick={() => handleNavScroll("about")}>
@@ -91,7 +115,8 @@ const handleNavScroll = (id: string) => {
                 viewBox="0 0 24 24"
               >
                 <title>GitHub</title>
-                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 
                 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 
                 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 
                 1.205.084 1.838 1.236 1.838 1.236 
@@ -107,7 +132,8 @@ const handleNavScroll = (id: string) => {
                 5.625-5.475 5.92.42.36.81 1.096.81 
                 2.22 0 1.606-.015 2.896-.015 
                 3.286 0 .315.21.69.825.57C20.565 
-                22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                />
               </svg>
             </a>
 
@@ -117,9 +143,9 @@ const handleNavScroll = (id: string) => {
           </div>
         </nav>
 
-<div className="hamburger">
-  <Hamburger isOpen={hamburgerOpen} onToggle={toggleHamburger} />
-</div>
+        <div className="hamburger">
+          <Hamburger isOpen={hamburgerOpen} onToggle={toggleHamburger} />
+        </div>
       </div>
     </>
   );

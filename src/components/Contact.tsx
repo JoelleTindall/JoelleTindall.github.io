@@ -42,6 +42,7 @@ const ContactPage: React.FC = () => {
                 </div>
                 <div className="emailholder">
                   <input
+                    id="name"
                     className="name"
                     name="name"
                     value={formData.name}
@@ -50,6 +51,7 @@ const ContactPage: React.FC = () => {
                     }
                     type="text"
                     placeholder="Name McNamerson"
+                    autoComplete="true"
                     required
                   ></input>
                 </div>
@@ -58,6 +60,7 @@ const ContactPage: React.FC = () => {
                 </div>
                 <div className="emailholder">
                   <input
+                   id="email"
                     className="email"
                     name="email"
                     value={formData.email}
@@ -66,6 +69,7 @@ const ContactPage: React.FC = () => {
                     }
                     type="email"
                     placeholder="cool@example.com"
+                    autoComplete="true"
                     required
                   ></input>
                 </div>
@@ -74,6 +78,7 @@ const ContactPage: React.FC = () => {
                 </div>
                 <div className="messageholder">
                   <textarea
+                  id="message"
                     className="message"
                     name="message"
                     value={formData.message}

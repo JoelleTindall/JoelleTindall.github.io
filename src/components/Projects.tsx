@@ -43,7 +43,7 @@ export default function ProjectsPage() {
       {
         id: "3",
         title: "RPSB",
-        description: "'My 3rd silly little game for the Playdate. Mix and mash together rocks, papers, and scissors to create explosions.",
+        description: "My 3rd silly little game for the Playdate. Mix and mash together rocks, papers, and scissors to create explosions.",
         url: "https://play.date/games/rock-paper-scissors-boom/",
         imagename: rpsb,
         category: "playdate",
@@ -67,7 +67,7 @@ export default function ProjectsPage() {
       {
         id: "6",
         title: "Chat App",
-        description: "'A simple chat application built with React, .NET Core, and Postgres",
+        description: "A simple chat application built with React, .NET Core, and Postgres",
         url: "https://github.com/JoelleTindall/.NET-Core-React-Postgres-ChatApp",
         imagename: chatapp,
         category: "other",
