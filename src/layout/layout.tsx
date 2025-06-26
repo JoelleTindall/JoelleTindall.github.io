@@ -13,6 +13,9 @@ const Layout: React.FC<Props> = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
+    setTimeout(() => {
+      document.body.classList.remove("preload");
+    }, 500);
     const nav = document.getElementById("stickynav");
     const navHeight = nav?.clientHeight || 0;
 
@@ -63,7 +66,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <NavBar />
-   
+
       <div className="row">
         <div className="column left sidebar"></div>
         <div className="column middle content">
