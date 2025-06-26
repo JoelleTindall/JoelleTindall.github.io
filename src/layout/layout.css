@@ -81,9 +81,10 @@ p,h1,h2,h3{
 }
 
 button {
-     -webkit-tap-highlight-color: transparent;
-  -webkit-appearance: none;
--webkit-border-radius: none;
+    -webkit-appearance: none; /* webkit browsers */
+    -moz-appearance: none; /* firefox browser */
+    appearance: none;
+    border-radius: 0; 
 }
 
 img{
