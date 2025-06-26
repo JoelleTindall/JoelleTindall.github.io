@@ -70,12 +70,18 @@
   font-family: "Ubuntu", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  transition:color 500ms,background-color 500ms,filter 500ms,-webkit-filter 500ms;
+  transition:color 500ms,background-color 500ms,filter 500ms,-webkit-filter 500ms, border 500ms;
 }
 
 p,h1,h2,h3{
   color:var(--bw);
  
+}
+
+button {
+     -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+-webkit-border-radius: none;
 }
 
 img{
