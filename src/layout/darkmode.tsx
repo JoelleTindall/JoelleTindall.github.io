@@ -4,27 +4,30 @@ import { useEffect, useState } from "react";
 
 interface Props {
   navHeight?: number;
-  
 }
 
-const DarkMode:React.FC<Props> = ({navHeight})=> {
-const [darkMode,setDarkMode] = useState(false);
+const DarkMode: React.FC<Props> = ({ navHeight }) => {
+  const [darkMode, setDarkMode] = useState(false);
 
- const [theme, setTheme] = useState('light'); // Initial theme
+  const [theme, setTheme] = useState("light"); // Initial theme
+  const [themeColor, setThemeColor] = useState("white"); //color of meta property (for mobile)
 
-      useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-      }, [theme]);
+  useEffect(() => {
+    let metaTag = document.querySelector('meta[name="theme-color"]');
+    metaTag?.setAttribute("content", themeColor);
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme, themeColor]);
 
-    const toggleDarkMode = ()=>{
-        setDarkMode(!darkMode)
-       setTheme( darkMode ? 'light' : 'dark');
-    }
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    setTheme(darkMode ? "light" : "dark");
+    setThemeColor(darkMode ? "white" : "#262626");
+  };
   return (
-    <div className="darkmode" style={{top:`${navHeight}`}}>
+    <div className="darkmode" style={{ top: `${navHeight}` }}>
       <img src={darkMode ? lightoff : lighton} onClick={toggleDarkMode}></img>
     </div>
   );
-}
+};
 
 export default DarkMode;

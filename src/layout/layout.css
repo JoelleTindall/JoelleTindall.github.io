@@ -36,7 +36,7 @@
   --color4: rgb(209, 207, 207);
   --color5: #262626;
   --bw-links: rgb(255, 255, 255);
-  --nav-bg: rgb(38, 38, 38);
+  --nav-bg: oklab(26.862000000000002% 0 -0.00003);
   --background-rb: -webkit-linear-gradient(
     180deg,
     rgb(209, 207, 207) 0 25%,
@@ -115,6 +115,11 @@ nav {
   position: sticky;
   z-index: 1000;
   background-color: var(--nav-bg);
+}
+
+nav .brand{
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 nav .brand a {
@@ -216,27 +221,26 @@ nav a.mascot img {
 
 /* Darkmode ------------------------------------------------ */
 .darkmode {
-  /* max-width: 50px;
-  max-height: 100px;
-  position: absolute;
-  left: 0;
-  top: 100px; */
+
   float:right;
   padding-left:5px;
+
   
 }
 
 .darkmode:hover,.darkmode:active {
   cursor: pointer;
   img{
-        transform: rotate(30deg);
+        transform: rotate(20deg);
   transform-origin: 60% 60%;
   }
 }
 
 .darkmode img {
-  max-width: 100%;
+  max-width: 75%;
   transition: transform 200ms,transform-origin 200ms;
+  max-height:75%;
+  
 } 
 
 
@@ -324,21 +328,7 @@ footer a p {
 
 /* tablet breakpoint ------------------------------------------------ */
 
-@media (max-width: 1100px) {
-  nav .links a {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-}
-
-@media (max-width: 720px) {
-  nav .links a {
-    font-size: 3cqw;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-}
-@media (max-width: 650px) {
+@media (max-width: 850px) {
   .links a {
     display: none;
   }

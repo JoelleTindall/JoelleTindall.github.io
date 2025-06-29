@@ -15,6 +15,7 @@ const OtherPage: React.FC = () => {
         <div className="underconstruction">
     <img src={workcat}></img>
     <p>Under Construction!</p>
+    <iframe  src="https://itch.io/embed-upload/4823134?color=000000" allowFullScreen width="750" height="660"><a href="https://joellestuff.itch.io/i-wanna-play-a-space-shooter">Play I wanna play a space shooter!! on itch.io</a></iframe>
 </div>
       </div>
     </div>
