@@ -1,5 +1,6 @@
 import "./components.css";
-import catapp from '../assets/images/catapp.gif';
+import cms from '../assets/images/cms.gif'
+import ta from '../assets/images/ta.gif'
 import chatapp from '../assets/images/chatapp.gif';
 import sitegif from '../assets/images/site.gif';
 import touchegg from '../assets/images/touchegg.png';
@@ -24,32 +25,9 @@ export default function ProjectsPage() {
 
   useEffect(() => {
     const manualProjects: Project[] = [
+
       {
         id: "1",
-        title: "Touch Egg",
-        description: "A silly little game for the Playdate. Won 3 nominations! Name is self explanatory",
-        url: "https://play.date/games/touch-egg/",
-        imagename: touchegg,
-        category: "playdate",
-      },
-      {
-        id: "2",
-        title: "Monster Elevator",
-        description: "Another silly little game for the Playdate. Make sandwiches for semi-randomized monsters!",
-        url: "https://play.date/games/monster-elevator/",
-        imagename: monsterelevator,
-        category: "playdate",
-      },
-      {
-        id: "3",
-        title: "RPSB",
-        description: "My 3rd silly little game for the Playdate. Mix and mash together rocks, papers, and scissors to create explosions.",
-        url: "https://play.date/games/rock-paper-scissors-boom/",
-        imagename: rpsb,
-        category: "playdate",
-      },
-      {
-        id: "4",
         title: "Full-Stack Personal site",
         description: "Full-stack version of this site, made with React, NGINX, Nodejs, Postgres and Docker.",
         url: "https://github.com/JoelleTindall/Personal-Site-React.ts-Node.js",
@@ -57,20 +35,51 @@ export default function ProjectsPage() {
         category: "other",
       },
       {
-        id: "5",
-        title: "PHP Storefront",
-        description: "A very bare bones storefront application built with PHP, JavaScript, and MySQL",
-        url: "https://github.com/JoelleTindall/Simple-PHP-MySQL-JS-Web-App",
-        imagename: catapp,
+        id: "2",
+        title: "CMS Website",
+        description: "Mobile-First static website made with Nuxt, TypeScript and Tailwind. Page features services list, image gallery, and contact form.",
+        url: "https://craftedmaintenancesolutions.netlify.app/",
+        imagename: cms,
         category: "other",
       },
       {
-        id: "6",
+        id: "3",
+        title: "TindallArt",
+        description: "Mobile-First static website made with Nuxt, TypeScript and Tailwind. Page features art galleries for two separate artists.",
+        url: "https://www.TindallArt.com",
+        imagename: ta,
+        category: "other",
+      },
+      {
+        id: "4",
         title: "Chat App",
         description: "A simple chat application built with React, .NET Core, and Postgres",
         url: "https://github.com/JoelleTindall/.NET-Core-React-Postgres-ChatApp",
         imagename: chatapp,
         category: "other",
+      },      {
+        id: "5",
+        title: "Touch Egg",
+        description: "A silly little game for the Playdate. Won 3 nominations! Name is self explanatory",
+        url: "https://play.date/games/touch-egg/",
+        imagename: touchegg,
+        category: "playdate",
+      },
+      {
+        id: "6",
+        title: "Monster Elevator",
+        description: "Another silly little game for the Playdate. Make sandwiches for semi-randomized monsters!",
+        url: "https://play.date/games/monster-elevator/",
+        imagename: monsterelevator,
+        category: "playdate",
+      },
+      {
+        id: "7",
+        title: "RPSB",
+        description: "My 3rd silly little game for the Playdate. Mix and mash together rocks, papers, and scissors to create explosions.",
+        url: "https://play.date/games/rock-paper-scissors-boom/",
+        imagename: rpsb,
+        category: "playdate",
       },
     ];
     setProjects(manualProjects);

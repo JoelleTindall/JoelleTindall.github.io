@@ -466,15 +466,16 @@ form {
   min-height: fit-content;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-  transition: border 500ms, padding 500ms, background-color 100ms,
-    min-width 500ms;
+  transition: border 500ms, padding 500ms, background-color 250ms,
+    min-width 500ms, transform 500ms;
 }
 .project:hover,
 .project:active {
-  border: 8px solid var(--other-color2);
+  /* border: 8px solid var(--other-color2); */
   cursor: pointer;
-  padding-left: 0;
-  padding-right: 0;
+transform: scale(1.05);
+  /* padding-left: 0; */
+  /* padding-right: 0; */
   background-color: var(--other-color3);
 }
 
@@ -486,12 +487,12 @@ form {
 
 .project:hover .project-info,
 .project:active .project-info {
-  border-radius: 10px 10px 0 0;
+  /* border-radius: 10px 10px 0 0; */
 }
 
 .project:hover .project-image,
 .project:active .project-image {
-  border-radius: 0 0 10px 10px;
+  /* border-radius: 0 0 10px 10px; */
   box-shadow: none;
 }
 
