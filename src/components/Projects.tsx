@@ -6,6 +6,7 @@ import sitegif from '../assets/images/site.gif';
 import touchegg from '../assets/images/touchegg.png';
 import rpsb from '../assets/images/rpsb.png';
 import monsterelevator from '../assets/images/monsterelevator.png';
+import ehs from '../assets/images/ehs.png';
 
 import { useEffect, useState } from "react";
 
@@ -81,6 +82,14 @@ export default function ProjectsPage() {
         imagename: rpsb,
         category: "playdate",
       },
+      {
+        id: "8",
+        title: "EHS",
+        description: "My 4rd silly little game for Playdate. A mishmash of little minigames with a VHS aesthetic.",
+        url: "https://play.date/games/ehs/",
+        imagename: ehs,
+        category: "playdate",
+      }
     ];
     setProjects(manualProjects);
     setLoading(false);
